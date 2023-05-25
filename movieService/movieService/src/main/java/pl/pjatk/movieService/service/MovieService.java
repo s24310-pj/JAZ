@@ -30,18 +30,33 @@ public class MovieService {
         return movieRepository.save(movie);
     }
 
-//    public Movie updateMovie(int id, Movie newMovie){
-//        Movie currentMovie = findById(id);
-//        if (currentMovie == null){
-//            return null;
-//        }
-//        currentMovie.setName(newMovie.getName());
-//        currentMovie.setMovieCategory(newMovie.getMovieCategory());
-//        return currentMovie;
-//    }
-//
-//    public boolean deleteMovie(int id){
-//        return movieList.removeIf(movie -> movie.getId() == id);
-//    }
+    public Optional<Movie> updateMovie(long id, Movie newMovie) {
+        Optional<Movie> currentMovie = movieRepository.findById(id);
+        if (currentMovie.isPresent()) {
+            Movie movie = currentMovie.get();
+            movie.setName(newMovie.getName());
+            movie.setMovieCategory(newMovie.getMovieCategory());
+            return Optional.of(movieRepository.save(movie));
+        }
+        return Optional.empty();
+    }
+
+    public Movie setMovieAvailability(long id) {
+        Optional<Movie> currentMovie = movieRepository.findById(id);
+        if (currentMovie.isPresent()) {
+            Movie movie = currentMovie.get();
+            movie.setAvailable(true);
+            return movieRepository.save(movie);
+        }
+        return null;
+    }
+
+    public boolean deleteMovie(long id) {
+        boolean exists = movieRepository.existsById(id);
+        if (exists) {
+            movieRepository.deleteById(id);
+        }
+        return exists;
+    }
 
 }

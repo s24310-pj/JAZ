@@ -35,6 +35,13 @@ public class RentalController {
         return ResponseEntity.ok().build();
     }
 
+    @RequestMapping("/rentMovie/{id}")
+    @GetMapping
+    public ResponseEntity<Movie> rentMovie(@PathVariable("id") Long id){
+        rentalService.rentMovie(id);
+        return ResponseEntity.ok().build();
+    }
+
 
 
 

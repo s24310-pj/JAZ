@@ -27,4 +27,10 @@ public class RentalService {
         restTemplate.put(URI.create(uri), Movie.class);
     }
 
+    public void rentMovie(Long id){
+        final String uri = "http://localhost:8080/movieService/movies/" + id + "/unavailable";
+
+        restTemplate.put(URI.create(uri), Movie.class);
+    }
+
 }

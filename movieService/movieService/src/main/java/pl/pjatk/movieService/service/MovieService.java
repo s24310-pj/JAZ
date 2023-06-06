@@ -41,11 +41,21 @@ public class MovieService {
         return Optional.empty();
     }
 
-    public Movie setMovieAvailability(long id) {
+    public Movie setMovieAvailable(long id) {
         Optional<Movie> currentMovie = movieRepository.findById(id);
         if (currentMovie.isPresent()) {
             Movie movie = currentMovie.get();
             movie.setAvailable(true);
+            return movieRepository.save(movie);
+        }
+        return null;
+    }
+
+    public Movie setMovieUnavailable(long id) {
+        Optional<Movie> currentMovie = movieRepository.findById(id);
+        if (currentMovie.isPresent()) {
+            Movie movie = currentMovie.get();
+            movie.setAvailable(false);
             return movieRepository.save(movie);
         }
         return null;

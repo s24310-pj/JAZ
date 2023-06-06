@@ -26,8 +26,11 @@ public class MovieController {
 
     @GetMapping(value = "/movies/{id}")
     public ResponseEntity<Optional<Movie>> movieById(@PathVariable("id") Long id) {
-        Optional<Movie> exceptionText = movieService.findById(id);
-        return ResponseEntity.ok(exceptionText);
+        Optional<Movie> movie = movieService.findById(id);
+        if (movie.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(movie);
     }
 
     @PostMapping("/movies")
@@ -49,8 +52,17 @@ public class MovieController {
     }
 
     @PutMapping("/movies/{id}/available")
-    public ResponseEntity<Movie> setMovieAvailability(@PathVariable("id") long id) {
-        Movie movie = movieService.setMovieAvailability(id);
+    public ResponseEntity<Movie> setMovieAvailable(@PathVariable("id") long id) {
+        Movie movie = movieService.setMovieAvailable(id);
+        if (movie == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(movie);
+    }
+
+    @PutMapping("/movies/{id}/unavailable")
+    public ResponseEntity<Movie> setMovieUnavailable(@PathVariable("id") long id) {
+        Movie movie = movieService.setMovieUnavailable(id);
         if (movie == null) {
             return ResponseEntity.notFound().build();
         }

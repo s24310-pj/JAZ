@@ -14,10 +14,4 @@ public class MovieAdvice {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Exception has been throwed: " + ex.getLocalizedMessage());
     }
 
-    @ExceptionHandler(HttpClientErrorException.BadRequest.class)
-    public ResponseEntity<String> badRequestExceptionHandler(HttpClientErrorException.BadRequest ex) {
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
-
 }

@@ -23,26 +23,24 @@ public class RentalController {
 
     @RequestMapping("/getMovie/{id}")
     @GetMapping
-    public ResponseEntity<Movie> getMovie(@PathVariable("id") Long id){
+    public ResponseEntity<Movie> getMovie(@PathVariable("id") Long id) {
         Movie movie = rentalService.getMovie(id);
         return ResponseEntity.ok(movie);
     }
 
     @RequestMapping("/returnMovie/{id}")
     @GetMapping
-    public ResponseEntity<Movie> returnMovie(@PathVariable("id") Long id){
+    public ResponseEntity<Movie> returnMovie(@PathVariable("id") Long id) {
         rentalService.returnMovie(id);
         return ResponseEntity.ok().build();
     }
 
     @RequestMapping("/rentMovie/{id}")
     @GetMapping
-    public ResponseEntity<Movie> rentMovie(@PathVariable("id") Long id){
+    public ResponseEntity<Movie> rentMovie(@PathVariable("id") Long id) {
         rentalService.rentMovie(id);
         return ResponseEntity.ok().build();
     }
-
-
 
 
 }

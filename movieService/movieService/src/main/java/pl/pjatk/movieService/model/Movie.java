@@ -1,5 +1,6 @@
 package pl.pjatk.movieService.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,10 +8,14 @@ import jakarta.persistence.*;
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "ID filmu", required = true, nullable = false)
     private Long id;
+    @Schema(description = "nazwa filmu", required = true, nullable = false)
     private String name;
+    @Schema(description = "kategoria filmu", required = true, nullable = false)
     @Enumerated(EnumType.STRING)
     private MovieCategory movieCategory;
+    @Schema(required = true)
     @Column(nullable = false)
     private boolean isAvailable;
 

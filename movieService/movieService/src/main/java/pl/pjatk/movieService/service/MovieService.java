@@ -10,13 +10,11 @@ import java.util.Optional;
 @Service
 public class MovieService {
 
-
     private final MovieRepository movieRepository;
 
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
-
 
     public Optional<Movie> findById(Long id) {
         return movieRepository.findById(id);

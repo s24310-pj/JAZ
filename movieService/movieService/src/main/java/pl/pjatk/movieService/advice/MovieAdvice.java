@@ -11,7 +11,7 @@ public class MovieAdvice {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> runtimeExceptionHandler(RuntimeException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Exception has been throwed: " + ex.getLocalizedMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Exception has been thrown: " + ex.getLocalizedMessage());
     }
 
 }
